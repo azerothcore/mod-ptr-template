@@ -8788,5 +8788,5 @@ INSERT INTO `mod_ptrtemplate_spells` (`ID`, `RaceMask`, `ClassMask`, `SpellID`, 
 (@wotlkeighty, 1693, 16, 64901, 'Hymn of Hope'),
 (@wotlkeighty, 1186, 64, 66842, 'Call of the Elements'),
 (@wotlkeighty, 1186, 64, 66843, 'Call of the Ancestors'),
-(@wotlkeighty, 1186, 64, 66844, 'Call of the Spirits');
+(@wotlkeighty, 1186, 64, 66844, 'Call of the Spirits'),
 (@wotlkeighty, 1791, 32, 70164, 'Rune of the Nerubian Carapace');

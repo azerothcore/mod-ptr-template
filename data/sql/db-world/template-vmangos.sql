@@ -4457,5 +4457,5 @@ INSERT INTO `mod_ptrtemplate_spells` (`ID`, `RaceMask`, `ClassMask`, `SpellID`, 
 (@vmpsix, 40, 1024, 24894, 'Heart of the Wild (Rank 5)'),
 (@vmpsix, 40, 1024, 25297, 'Healing Touch (Rank 11)'),
 (@vmpsix, 40, 1024, 25298, 'Starfire (Rank 7)'),
-(@vmpsix, 40, 1024, 25299, 'Rejuvenation (Rank 11)');
+(@vmpsix, 40, 1024, 25299, 'Rejuvenation (Rank 11)'),
 (@vmpsix, 40, 1024, 29166, 'Innervate');
