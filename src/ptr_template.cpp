@@ -875,7 +875,7 @@ public:
             return;
 
         uint32 oldMSTime = getMSTime();
-        player->GetCinematicMgr()->EndCinematic();
+        player->GetCinematicMgr().EndCinematic();
         templatevar.HandleApply(player, templateIndex, 5);
         LOG_DEBUG("module", "Handled template apply for character {} in {} ms.", player->GetGUID().ToString(), (GetMSTimeDiffToNow(oldMSTime) - 100));
         return;
