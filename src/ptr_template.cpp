@@ -30,12 +30,10 @@ public:
     }
 };
 
-class createTemplate : public PlayerScript {
+class createTemplate {
 
 public:
-    createTemplate() : PlayerScript("createTemplate") { }
-
-    void HandleApply(Player* player, uint32 index, uint32 delayMultiplier = 1)
+    static void HandleApply(Player* player, uint32 index, uint32 delayMultiplier = 1)
     {
         LOG_DEBUG("module", "Applying template {} for character {}.", index, player->GetGUID().ToString());
 
@@ -860,8 +858,6 @@ public:
 
     void OnPlayerLogin(Player* player) override
     {
-        static createTemplate templatevar;
-
         if (!sConfigMgr->GetOption<bool>("TemplateEnable", true))
         {
             return;
@@ -876,7 +872,7 @@ public:
 
         uint32 oldMSTime = getMSTime();
         player->GetCinematicMgr().EndCinematic();
-        templatevar.HandleApply(player, templateIndex, 5);
+        createTemplate::HandleApply(player, templateIndex, 5);
         LOG_DEBUG("module", "Handled template apply for character {} in {} ms.", player->GetGUID().ToString(), (GetMSTimeDiffToNow(oldMSTime) - 100));
         return;
     }
@@ -945,8 +941,6 @@ public:
     static bool applyTemplate(ChatHandler* handler, Optional<PlayerIdentifier> player, uint32 index) // TODO: Allow the command to use a target instead of always targetting self.
     { //                                                  0
         QueryResult check = WorldDatabase.Query("SELECT Enable FROM mod_ptrtemplate_index WHERE ID = {}", index); // TODO: Check keywords column for template...keywords.
-        static createTemplate templatevar;
-
         if (check)
         {
             uint8 enable = (*check)[0].Get<uint8>();
@@ -955,7 +949,7 @@ public:
 
             Player* target = player->GetConnectedPlayer();
 
-            switch(templatevar.CheckTemplateQualifier(target, index, enable))
+            switch(createTemplate::CheckTemplateQualifier(target, index, enable))
             {
                 case MISSING_TEMPLATE_INFO:
                     handler->PSendModuleSysMessage(module_string, ERROR_TEMPLATE_INFO);
@@ -976,7 +970,7 @@ public:
                     break;
             }
             uint32 oldMSTime = getMSTime();
-            templatevar.HandleApply(target, index);
+            createTemplate::HandleApply(target, index);
             LOG_DEBUG("module", "Handled template apply for character {} in {} ms.", player->GetGUID().ToString(), (GetMSTimeDiffToNow(oldMSTime) - 100));
             return true;
         }
@@ -1057,7 +1051,6 @@ private:
 void Add_ptr_template()
 {
     new createPTR();
-    new createTemplate();
     new announce();
     new schedulediff();
 }
